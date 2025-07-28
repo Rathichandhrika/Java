@@ -1,0 +1,75 @@
+import java.util.Scanner;
+class Game
+{
+    int secretNumber = 99;
+    int guessTime = 10;
+    int totalGame = 0;
+    int winCount = 0;
+    Scanner scan = new Scanner(System.in);
+    void playGame()
+    {
+        totalGame++;
+        do {
+            System.out.print("Enter your Guess : ");
+            int userGuess = scan.nextInt();
+
+            if (userGuess > secretNumber) {
+                System.out.println("Your Guess is Higher than the Secret Number");
+
+            } else if (userGuess < secretNumber) {
+                System.out.println("Your guess is Lower than the Secret Number.");
+
+            } else {
+                winCount++;
+                System.out.println("Your Guess is Right and YOU WON!");
+                break;
+            }
+            guessTime--;
+            System.out.println("You have " + guessTime + " more guesses left!");
+        } while (guessTime != 0);
+    }
+    void totalGameCount()
+    {
+        System.out.println("Total Number of Games Played = "+totalGame);
+    }
+    void winStatus()
+    {
+        System.out.println("Number of Games you have Won = "+winCount);
+    }
+}
+
+public class GuessGame {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Game g = new Game();
+        int choice;
+        do {
+            System.out.println("\n-----GAME MENU-----");
+            System.out.println("1.PLAY GAME ");
+            System.out.println("2.TOTAL GAME");
+            System.out.println("3.TOTAL GUESSES");
+            System.out.println("4.WIN STATUS");
+            System.out.println("5.QUIT GAME");
+            System.out.print("Enter your Choice : ");
+            choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    g.playGame();
+                    break;
+                case 2:
+                    g.totalGameCount();
+                    break;
+                case 4:
+                    g.winStatus();
+                    break;
+                case 5:
+                    System.out.println("QUITTING THE GAME!");
+                    break;
+                default:
+                    System.out.println("Invalid Choice");
+            }
+        } while (choice != 5);
+
+    }
+}
