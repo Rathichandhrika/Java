@@ -2,12 +2,13 @@ import java.util.Scanner;
 class Game
 {
     int secretNumber = 99;
-    int guessTime = 10;
     int totalGame = 0;
     int winCount = 0;
+    int guessCount = 0;
     Scanner scan = new Scanner(System.in);
     void playGame()
     {
+        int guessTime = 10;
         totalGame++;
         do {
             System.out.print("Enter your Guess : ");
@@ -15,13 +16,15 @@ class Game
 
             if (userGuess > secretNumber) {
                 System.out.println("Your Guess is Higher than the Secret Number");
+                guessCount++;
 
             } else if (userGuess < secretNumber) {
                 System.out.println("Your guess is Lower than the Secret Number.");
-
+                guessCount++;
             } else {
                 winCount++;
                 System.out.println("Your Guess is Right and YOU WON!");
+                guessCount++;
                 break;
             }
             guessTime--;
