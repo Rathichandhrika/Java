@@ -1,78 +1,106 @@
+import java.util.Random;
 import java.util.Scanner;
 class Game
 {
-    int secretNumber = 99;
-    int totalGame = 0;
-    int winCount = 0;
-    int guessCount = 0;
-    Scanner scan = new Scanner(System.in);
-    void playGame()
-    {
-        int guessTime = 10;
-        totalGame++;
-        do {
-            System.out.print("Enter your Guess : ");
-            int userGuess = scan.nextInt();
-
-            if (userGuess > secretNumber) {
-                System.out.println("Your Guess is Higher than the Secret Number");
-                guessCount++;
-
-            } else if (userGuess < secretNumber) {
-                System.out.println("Your guess is Lower than the Secret Number.");
-                guessCount++;
-            } else {
-                winCount++;
-                System.out.println("Your Guess is Right and YOU WON!");
-                guessCount++;
-                break;
-            }
-            guessTime--;
-            System.out.println("You have " + guessTime + " more guesses left!");
-        } while (guessTime != 0);
-    }
-    void totalGameCount()
-    {
-        System.out.println("Total Number of Games Played = "+totalGame);
-    }
-    void winStatus()
-    {
-        System.out.println("Number of Games you have Won = "+winCount);
-    }
-}
-
-public class GuessGame {
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        Game g = new Game();
-        int choice;
-        do {
-            System.out.println("\n-----GAME MENU-----");
-            System.out.println("1.PLAY GAME ");
-            System.out.println("2.TOTAL GAME");
-            System.out.println("3.TOTAL GUESSES");
-            System.out.println("4.WIN STATUS");
-            System.out.println("5.QUIT GAME");
-            System.out.print("Enter your Choice : ");
-            choice = scan.nextInt();
-
-            switch (choice) {
-                case 1:
-                    g.playGame();
-                    break;
-                case 2:
-                    g.totalGameCount();
-                    break;
-                case 4:
-                    g.winStatus();
-                    break;
-                case 5:
-                    System.out.println("QUITTING THE GAME!");
-                    break;
-                default:
-                    System.out.println("Invalid Choice");
-            }
-        } while (choice != 5);
-
-    }
+ Random rand = new Random();
+ int secretNumber = rand.nextInt(100) + 1;
+ int totalGuesses = 0;
+ int win = 0;
+ int totalGame = 0;
+ double average = 0.0;
+ Scanner scan = new Scanner(System.in);
+ void play()
+ {
+ int guessCount = 0;
+ int trial = 10;
+ while (trial!=0)
+ {
+ System.out.print("Enter your Guess : ");
+ int guess = scan.nextInt();
+ if (guess > 100 || guess < 1)
+ {
+ if (guess == -1 ) {
+ break;
+ }
+ else {
+ System.out.println("INVALID GUESS!");
+ continue;
+ }
+ }else if (guess > secretNumber && guess <= 100) 
+ {
+ System.out.println("Your Guess is Higher than the Secret Number");
+ guessCount++;
+ trial--;
+ }
+ else if (guess < secretNumber && guess >= 1) {
+ System.out.println("Your guess is Lower than the Secret Number.");
+ guessCount++;
+ trial--;
+ }
+ else if (guess == secretNumber)
+ {
+ System.out.println("Your Guess is Right, YOU WON!");
+ win++;
+ guessCount++;
+ break;
+ }
+ System.out.println("You hava "+trial+" guesses left!");
+ }
+ if (trial == 0)
+ System.out.println("The Secret Number = "+secretNumber);
+ totalGuesses += guessCount;
+ totalGame++;
+ average = (double) totalGuesses/totalGame;
+ }
+ void viewStatus()
+ {
+ System.out.println("\n-------GAME STATUS-------");
+ System.out.println("Total Games Played = "+totalGame);
+ System.out.println("Total Guesses = "+totalGuesses);
+ System.out.println("Total Games Won = "+win);
+ System.out.println("Average Guesses = "+average);
+ if (totalGame == 0)
+ {
+ System.out.println("NO GAMES PLAYED!");
+ }
+ System.out.println("\n-------------------------");
+ }
+}public class GuessGame
+{
+ public static void main(String[] args) {
+ Scanner scan = new Scanner(System.in);
+ Game g = new Game();
+ int choice = 0;
+ System.out.println("\n----------------------------------");
+ System.out.println("*** WELCOME TO THE GUESS GAME ***");
+ System.out.println("----------------------------------");
+ System.out.println("\n---------GAME DESCRIPTION---------");
+ System.out.println("* Guess a Secret Number between 1 to 100.");
+ System.out.println("* 10 Chances per Game.");
+ System.out.println("* Guess the Number Correctly & WIN the Game.");
+ System.out.println("-------------- ***** --------------");
+ do {
+ System.out.println("\n-----GAME MENU-----");
+ System.out.println("1.PLAY GAME ");
+ System.out.println("2.VIEW STATUS");
+ System.out.println("3.QUIT ");
+ System.out.println("--------------------");
+ System.out.print("Enter your Choice : ");
+ choice = scan.nextInt();
+ switch (choice)
+ {
+ case 1:
+ g.play();
+ break;
+ case 2:
+ g.viewStatus();
+ break;
+ case 3:
+ System.out.println("THANKS! FOR PLAYING THE GUESS GAME!");
+ break;
+ default:
+ System.out.println("Invalid Choice");
+ }
+ } while (choice != 3);
+ }
 }
