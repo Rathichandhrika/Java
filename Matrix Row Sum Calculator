@@ -1,0 +1,52 @@
+import java.util.Scanner;
+public class Matrix {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        int [][] matrix = new int[4][4];
+        int rowSum = 0 ;
+        System.out.println("Enter the Elements of the 3x3 Matrix : ");
+        for (int rows=1;rows<=3;rows++)
+        {
+            System.out.println("Row "+rows+" : ");
+            for (int cols=1;cols<=3;cols++)
+            {
+                System.out.print("\tElement "+cols+" : ");
+                matrix[rows][cols] = scan.nextInt();
+            }
+        }
+        System.out.println("\n-----MATRIX-----");
+        for (int rows=1;rows<=3;rows++)
+        {
+            for (int cols=1;cols<=3;cols++)
+            {
+                System.out.print(matrix[rows][cols]+" ");
+            }
+            System.out.println();
+        }
+        System.out.println("\n---ROW SUM---");
+        int highest = 0;
+        int rowIndex = 0;
+
+        for (int rows=1;rows<=3;rows++)
+        {
+            int Sum = 0;
+            for (int cols = 1; cols <= 3; cols++)
+            {
+                Sum += matrix[rows][cols];
+            }
+            rowSum = Sum;
+            if (rows == 1) {
+                highest = rowSum;
+                rowIndex = 1;
+            }
+            else if (highest < rowSum)
+            {
+                highest = rowSum;
+                rowIndex = rows;
+            }
+
+            System.out.println("Sum of Row "+rows+"= " + rowSum);
+        }
+        System.out.println("\nRow Number "+rowIndex+" has the Highest Row Sum of "+highest);
+    }
+}
