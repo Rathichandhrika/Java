@@ -1,0 +1,36 @@
+import java.util.Scanner;
+public class Attendance {
+    public static void main(String [] args) {
+        int days , hours ;
+        int totalPresent = 0;
+        int totalHours = 5 * 8;
+        double weeklyPercentage;
+        int [][] attendance = new int[10][10];
+        double [] dailyPercentage= new double[6];
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Mark the Attendance as 1 (Present) or 0 (Absent) : ");
+        for (days = 0 ; days < 5;days++)
+        {
+            int presentCount=0;
+            System.out.println("Day "+(days+1)+": ");
+            for (hours = 0; hours < 8; hours++)
+            {
+                System.out.print("\tAttendance for Hour " + (hours + 1) + ": ");
+                attendance[days][hours] = scan.nextInt();
+                if (attendance[days][hours] == 1)
+                {
+                    presentCount++;
+                }
+            }
+            totalPresent += presentCount;
+            dailyPercentage[days] = (presentCount/8.0)*100;
+        }
+        System.out.println("\n----Attendance Report-----");
+        for (days=0;days<5;days++)
+        {
+            System.out.println("Daily Attendance  Percentage for Day "+(days+1)+" = "+dailyPercentage[days]+"%");
+        }
+        weeklyPercentage = ((double) totalPresent /totalHours) * 100;
+        System.out.println("\nWeekly Attendance Percentage = "+weeklyPercentage+"%");
+    }
+}
