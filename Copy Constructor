@@ -1,0 +1,20 @@
+public class MyClass {
+    int num;
+    public MyClass() {
+    }
+    public MyClass(MyClass Other) {
+        this.num=Other.num;
+    }
+    public static void main(String[] args) {
+        MyClass original = new MyClass();
+        original.num=10;
+
+        MyClass copy = new MyClass(original);
+
+        System.out.println("Original Object : ");
+        System.out.println(original.num);
+
+        System.out.println("Copied Object : ");
+        System.out.println(copy.num);
+    }
+}
