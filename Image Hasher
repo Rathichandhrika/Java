@@ -1,0 +1,42 @@
+import java.io.FileInputStream;
+import java.security.MessageDigest;
+import java.util.Scanner;
+public class ImageHasher
+{
+    private static String toHex(byte[] data)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : data)
+        {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) sb.append('0');
+            sb.append(hex);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter image path: ");
+        String path = sc.nextLine();
+        try
+        {
+            MessageDigest sha = MessageDigest.getInstance("SHA-256");
+            FileInputStream f = new FileInputStream(path);
+            byte[] buf = new byte[1024];
+            int n;
+            while ((n = f.read(buf)) != -1)
+            {
+                sha.update(buf, 0, n);
+            }
+            f.close();
+            String hash = toHex(sha.digest());
+            System.out.println("SHA-256 Hash: " + hash);
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}

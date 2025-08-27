@@ -1,0 +1,55 @@
+import java.lang.*;
+import java.util.Scanner;
+class Marks {
+    public static void main(String [] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter Subject 1 Mark : ");
+        float m1 = scan.nextFloat();
+        System.out.print("Enter Subject 2 Mark : ");
+        float m2 = scan.nextFloat();
+        System.out.print("Enter Subject 3 Mark : ");
+        float m3 = scan.nextFloat();
+
+        float total = m1+m2+m3;
+        float avg = total/3;
+
+        char grade;
+        boolean pass_status;
+
+        if (m1 < 50 || m2 < 50 || m3 < 50) {
+            pass_status = false;
+            grade = 'U';
+            System.out.println("Your Grade is "+grade);
+        }
+        else {
+            pass_status = true;
+            if (avg >= 90) {
+                grade = 'S';
+            } else if (avg < 90 && avg >= 80) {
+                grade = 'A';
+            } else if (avg < 80 && avg >= 70) {
+                grade = 'B';
+            } else if (avg < 70 && avg >= 60) {
+                grade = 'C';
+            } else if (avg < 60 && avg >= 50) {
+                grade = 'D';
+            } else {
+                grade = 'E';
+            }
+        }
+
+        System.out.println("The Total of three Subjects = "+total);
+        System.out.println("The Average of three Subjects = "+avg);
+
+        if (pass_status) {
+            System.out.println("You had PASSED!");
+        }
+        else {
+            System.out.println("You have FAILED!");
+        }
+
+        System.out.println("Your Grade is = "+grade);
+    }
+}

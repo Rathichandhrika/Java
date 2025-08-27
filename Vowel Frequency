@@ -1,0 +1,44 @@
+import java.util.Scanner;
+public class VowelFrequency {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        int count_a = 0, count_e = 0, count_i = 0, count_o = 0, count_u = 0;
+        System.out.print("Enter the String : ");
+        String str1 = scan.nextLine();
+        String str2 = str1.toLowerCase();
+        char [] letters = str2.toCharArray();
+
+        for (int i=0;i<str2.length();i++)
+        {
+            if (letters[i] == 'a')
+            {
+                count_a++;
+            }
+            else if (letters[i] == 'e')
+            {
+                count_e++;
+            }
+            else if (letters[i] == 'i')
+            {
+                count_i++;
+            }
+            else if (letters[i] == 'o' )
+            {
+                count_o++;
+            }
+            else if (letters[i] == 'u')
+            {
+                count_u++;
+            }
+            else
+                continue;
+        }
+        System.out.println("\nThe Frequency of Vowels in the given String ....");
+        System.out.println("a = "+count_a+" times");
+        System.out.println("e = "+count_e+" times");
+        System.out.println("i = "+count_i+" times");
+        System.out.println("o = "+count_o+" times");
+        System.out.println("u = "+count_u+" times");
+
+    }
+}

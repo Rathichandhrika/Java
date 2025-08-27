@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class Login {
+    public static void main(String [] args) {
+        String name = "ADMIN";
+        String pwd = "Admin@123";
+        int loginFailure = 0;
+        boolean loginTry = true;
+        Scanner scan = new Scanner(System.in);
+
+        while (loginTry)
+        {
+            System.out.print("Enter the Username : ");
+            String userName = scan.nextLine();
+            System.out.print("Enter the Password : ");
+            String password = scan.nextLine();
+            if ((userName.equals(name)) && (password.equals(pwd)))
+            {
+               System.out.println("Login Successful!, WELCOME");
+            }
+            else {
+                loginFailure++;
+                System.out.println("Invalid Username or Password, Attempt : " + loginFailure);
+            }
+                System.out.print("Do you want to Try again! (Y/N) : ");
+                char choice = scan.next().charAt(0);
+                scan.nextLine();
+                if (choice == 'n' || choice == 'N') {
+                    loginTry = false;
+                    System.out.println("Exiting Login! Total Failure Attempts : " + loginFailure);
+                }
+
+        }
+    }
+}

@@ -1,0 +1,22 @@
+import java.lang.*;
+import java.util.Scanner;
+class BMI {
+    public static void main(String [] args) {
+        System.out.println("Enter the Weight (in kg) : ");
+        Scanner scan = new Scanner(System.in);
+        double weight = scan.nextDouble();
+        System.out.println("Enter the Height (in metre) : ");
+        double height = scan.nextDouble();
+        boolean bmi_status=false;
+        double BMI = weight /(height * height);
+        if (BMI >= 18.5 && BMI < 25) {
+            bmi_status=true;
+        }
+        if (bmi_status) {
+            System.out.printf("The BMI value %.1f is NORMAL",BMI);
+        }
+        else {
+            System.out.println("The BMI value is ABNORMAL! You have to take care of your weight!");
+        }
+    }
+}

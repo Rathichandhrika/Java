@@ -1,0 +1,25 @@
+import java.lang.*;
+import java.util.Scanner;
+class Win {
+    public static void main(String [] args) {
+        System.out.print("Enter the Runs Scored by the Team : ");
+        Scanner scan = new Scanner(System.in);
+        int runs = scan.nextInt();
+        System.out.print("Enter the number of Fouls made by the Team : ");
+        byte fouls = scan.nextByte();
+        boolean win=false;
+        System.out.println("The Runs Scored = "+runs);
+        System.out.println("The Fouls Made = "+fouls);
+        if (runs >= 50 && fouls <= 5) {
+            win = true;
+        }
+        if (win==true) {
+            System.out.println("The Team Wins");
+        }
+        else {
+            System.out.println("The Team Loses");
+        }
+    }
+
+}
+

@@ -1,0 +1,123 @@
+public class CustomLinkedList
+{
+    private static class Node
+    {
+        int data;
+        Node next;
+
+        Node(int data)
+        {
+            this.data = data;
+            this.next = null;
+        }
+    }
+    private Node head;
+
+    public void add(int data)
+    {
+        Node newNode = new Node(data);
+
+        if (head == null)
+        {
+            head = newNode;
+            System.out.println("\n"+data + " added as the first node (head).");
+        }
+        else
+        {
+            Node current = head;
+            while (current.next != null)
+            {
+                current = current.next;
+            }
+            current.next = newNode;
+            System.out.println(data + " added to the end of the list.");
+        }
+    }
+    public void delete(int data)
+    {
+        if (head == null)
+        {
+            System.out.println("The list is empty. Nothing to delete.");
+            return;
+        }
+        if (head.data == data)
+        {
+            head = head.next;
+            System.out.println(data + " was at the head and has been deleted.");
+            return;
+        }
+
+        Node current = head;
+        while (current.next != null && current.next.data != data)
+        {
+            current = current.next;
+        }
+
+        if (current.next == null)
+        {
+            System.out.println(data + " not found. Deletion failed.");
+        }
+        else
+        {
+            current.next = current.next.next;
+            System.out.println(data + " has been deleted from the list.");
+        }
+    }
+
+    public void search(int data)
+    {
+        Node current = head;
+        int position = 0;
+
+        while (current != null)
+        {
+            if (current.data == data)
+            {
+                System.out.println(data + " found at position " + position + " in the list.");
+                return;
+            }
+            current = current.next;
+            position++;
+        }
+
+        System.out.println(data + " is not present in the list.");
+    }
+
+    public void display()
+    {
+        if (head == null)
+        {
+            System.out.println("The list is currently empty.");
+            return;
+        }
+
+        System.out.print("\nLinked List: ");
+        Node current = head;
+        while (current != null)
+        {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+    public static void main(String[] args)
+    {
+        System.out.println("Welcome to the Linked List Program!");
+
+        CustomLinkedList list = new CustomLinkedList();
+        list.add(10);
+        list.add(25);
+        list.add(35);
+
+        list.display();
+
+        list.search(25);
+        list.search(50);
+
+        list.delete(25);
+        list.display();
+
+        list.delete(50);
+        list.display();
+    }
+}

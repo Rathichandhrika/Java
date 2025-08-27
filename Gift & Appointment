@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class PatientGift {
+    public static void main(String [] args) {
+        Scanner scan = new Scanner(System.in);
+        int lastDigit,digitsCount=0;
+        System.out.print("Enter the Patient's Age : ");
+        int age = scan.nextInt();
+
+        if (age >= 18 && age <= 65)
+        {
+            System.out.println("The Patient is Eligible for Vaccine.");
+
+            System.out.print("Enter the Appointment number : ");
+            int appointmentNumber = scan.nextInt();
+
+            lastDigit = appointmentNumber % 10;
+
+            while (appointmentNumber!=0) {
+                appointmentNumber/=10;
+                digitsCount++;
+            }
+            if (digitsCount == 3)
+            {
+                if (lastDigit % 2 == 0)
+                {
+                    System.out.println("You are Assigned a Priority Slot.");
+                }
+                else
+                {
+                    System.out.println("You are Assigned a Regular Slot.");
+                }
+                switch (lastDigit)
+                {
+                    case 1:
+                        System.out.println("Gift : Pen");
+                        break;
+                    case 2:
+                        System.out.println("Gift : Mask");
+                        break;
+                    case 3:
+                        System.out.println("Gift : Sanitizer");
+                        break;
+                    default:
+                        System.out.println("No Special Gift!");
+                }
+            }
+        }
+        else
+        {
+            System.out.println("You are not Eligible for Vaccine. \nYour age should be within 18-65.");
+        }
+
+    }
+}
